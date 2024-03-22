@@ -23,7 +23,7 @@ class CreateAccount extends StatefulWidget {
 class _CreateAccountState extends State<CreateAccount> {
 
   final TextEditingController email = TextEditingController();
-  bool buttonIsActive = false;
+  bool buttonIsActive = false; //button checker
 
   @override
   void dispose() {
@@ -65,7 +65,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         if(email!.isEmpty || !email.contains('@')){
                           return 'Please enter email';
                         } return null;
-                      },
+                      },// validator
                       onChanged: (value){
                         setState((){
                           buttonIsActive = value!.isNotEmpty?true:false;
@@ -77,6 +77,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   CustomButton(
                     color: buttonIsActive ? Color(kDarkText.value) : Color(kDarkText.value).withOpacity(0.7),
                     text: 'Sign Up', onTap: (){
+
                     authNotifier.loader=true;
                     SendCodeModel model = SendCodeModel(email: email.text,);
                     String newModel = sendCodeModelToJson(model);
@@ -85,6 +86,7 @@ class _CreateAccountState extends State<CreateAccount> {
 
                     AuthHelper.sendCode(newModel).then((response){
                       if(response==true){
+                        //if response is true, commence a loading state till next page
                         authNotifier.loader=false;
                         Get.to(()=> VerifyOtp(email: email.text,));
                         Get.snackbar('Email Token', code,

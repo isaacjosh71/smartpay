@@ -19,7 +19,7 @@ const kDarkText = Color(0xFF111827);
 const customColor = Color(0xFFE5E7EB);
 
 
-//
+//Text
 class ReusableText extends StatelessWidget {
   const ReusableText({super.key, required this.text, required this.style});
 
@@ -78,6 +78,7 @@ class CustomAppBar extends StatelessWidget {
   }
 }
 
+//reusable textfield
 class CustomTextField extends StatelessWidget {
   const CustomTextField({super.key, this.controller, required this.hintText, this.keyboard, this.validator, this.suffixIcon, this.onEditingComplete, this.obscureText, this.onChanged, this.readOnly});
   final TextEditingController? controller;
@@ -137,7 +138,7 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-
+//reusable buttons
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, required this.text, this.onTap, required this.height, required this.width, this.color});
   final String text;
@@ -164,6 +165,7 @@ class CustomButton extends StatelessWidget {
   }
 }
 
+//dashboard screen background
 Widget buildStyleContainer(BuildContext context, Widget child,){
   return Container(
     decoration: BoxDecoration(
@@ -175,6 +177,7 @@ Widget buildStyleContainer(BuildContext context, Widget child,){
   );
 }
 
+//shimmer loading state
 class ShimmerWidget extends StatelessWidget {
   const ShimmerWidget.rectangular({
     Key? key, required this.height, required this.width,

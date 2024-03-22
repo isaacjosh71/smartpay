@@ -11,6 +11,7 @@ import '../entitties/models/response/signup_res.dart';
 class AuthHelper {
   static var client = https.Client();
 
+  //getEmailToken POST
   static Future<bool> sendCode(String model) async{
     try{
       Map<String, String> requestHeaders = {
@@ -32,6 +33,7 @@ class AuthHelper {
     }
   }
 
+  //login POST
   static Future<bool> login(String model) async{
     Map<String, String> requestHeaders = {
       'Content-Type':'application/json'
@@ -54,6 +56,7 @@ class AuthHelper {
     } else {return false;}
   }
 
+  //verifyOTP POST
   static Future<bool> verifyCode(String model) async{
     Map<String, String> requestHeaders = {
       'Content-Type':'application/json'
@@ -70,6 +73,7 @@ class AuthHelper {
     } else {return false;}
   }
 
+  //register POST
   static Future<bool> register(String model) async{
     Map<String, String> requestHeaders = {
       'Content-Type':'application/json'
@@ -93,6 +97,7 @@ class AuthHelper {
     } else {return false;}
   }
 
+  //dashboard GET
   static Future<DashboardResponse> getSecret() async{
     final SharedPreferences pref = await SharedPreferences.getInstance();
     String? token = pref.getString('token');

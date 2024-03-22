@@ -1,4 +1,5 @@
 class Config {
+  //baseUrl and end points
   static const apiUrl = "mobile-test-2d7e555a4f85.herokuapp.com";
   static const String login = "/api/v1/auth/login";
   static const String register = "/api/v1/auth/register";

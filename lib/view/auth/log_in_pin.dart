@@ -76,9 +76,13 @@ class _LogPinState extends State<LogPin> {
                 print('pinCode is $pinCode');
 
                 if(pinCode == _pin){
+
                   !buttonIsActive ? null :  Get.off(()=> const DashBoard());
+
                 } else {
+                  //if current pin is not equal to saved pin
                   !buttonIsActive? null :
+
                   Get.snackbar('Pin incorrect', 'Input your correct pin',
                       backgroundColor: Color(kTeal.value),
                       colorText: Color(kLight.value), icon: const Icon(Icons.add_alert)
@@ -112,6 +116,7 @@ class _LogPinState extends State<LogPin> {
       onCompleted: (pin) {
         print("Completed: " + pin);
         setState(() {
+          //set completed pin to new string
           (_pin = pin);
           buttonIsActive = _pin.isNotEmpty?true:false;
         });

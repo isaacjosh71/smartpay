@@ -78,6 +78,7 @@ class _DashBoardState extends State<DashBoard> {
                 children: [
                   AnimatedTextKit(
                     animatedTexts: [
+                      // wave text animation
                       WavyAnimatedText(
                           'Secret Message Revealed!',
                           textAlign: TextAlign.justify,
@@ -91,6 +92,7 @@ class _DashBoardState extends State<DashBoard> {
                     alignment: Alignment.center,
                     child: SizedBox(
                       height: 300.h, width: 310.w,
+                      //get future calling from dashboard api
                       child: FutureBuilder(
                         future: getMessage,
                         builder: (context, snapshot) {
@@ -132,5 +134,6 @@ class _DashBoardState extends State<DashBoard> {
     );
   }
 
+  //shimmer loading effect
   Widget buildPopularShimmer()=> ShimmerWidget.rectangular(height: 300.h, width: 310.w);
 }

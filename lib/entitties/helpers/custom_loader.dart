@@ -2,6 +2,8 @@
 import 'package:apex/entitties/helpers/constants.dart';
 import 'package:flutter/material.dart';
 
+
+//circular indicator
 class CustomLoader extends StatelessWidget {
   const CustomLoader({Key? key}) : super(key: key);
 

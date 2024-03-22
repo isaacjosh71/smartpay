@@ -27,6 +27,7 @@ class Completed extends StatelessWidget {
             style: appstyle(16.sp, Color(kGreyText.value), FontWeight.w400, 0.3.sp),),
           SizedBox(height: 32.h,),
           CustomButton(text: 'Get Started', onTap: () async {
+            //saves the state once user register
             final SharedPreferences prefs = await SharedPreferences.getInstance();
             prefs.setBool('done', true);
             Navigator.pushAndRemoveUntil(

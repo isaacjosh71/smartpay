@@ -24,7 +24,7 @@ class _RegisterState extends State<Register> {
   final TextEditingController fullName = TextEditingController();
   final TextEditingController userName = TextEditingController();
   final TextEditingController password = TextEditingController();
-  bool buttonIsActive = false;
+  bool buttonIsActive = false;//button checker
   String _selectedCountry = 'Country';
 
 
@@ -72,7 +72,7 @@ class _RegisterState extends State<Register> {
                     if(name!.isEmpty){
                       return 'Please enter name';
                     } return null;
-                  },
+                  },//validator
                 ),
                 SizedBox(height: 16.h,),
                 CustomTextField(controller: userName,
@@ -91,7 +91,7 @@ class _RegisterState extends State<Register> {
                     if(country!.isEmpty){
                       return 'Please select country';
                     } return null;
-                  },
+                  },//according to backend, country requires just country code
                   suffixIcon: GestureDetector(
                       onTap: (){
                         showCountryPicker(
@@ -120,7 +120,7 @@ class _RegisterState extends State<Register> {
                           ),
                           onSelect: (Country country){
                             setState((){_selectedCountry = country.countryCode;});
-                          }
+                          }//selected country
                         );
                       },
                       child: const Icon(Icons.keyboard_arrow_down_rounded)),
@@ -140,7 +140,7 @@ class _RegisterState extends State<Register> {
                     if(password!.isEmpty || password.length < 6){
                       return 'Please enter password';
                     } return null;
-                  },
+                  },//according to backend, password requires to start with a capital letter, then alphanumeric
                     onChanged: (value){
                       setState((){
                         buttonIsActive = value!.isNotEmpty?true:false;
@@ -151,19 +151,20 @@ class _RegisterState extends State<Register> {
                 SizedBox(height: 24.h,),
                 CustomButton(
                   text: 'Continue', onTap: (){
+                    //create body model
                   RegisterModel model = RegisterModel(email: widget.email, password: password.text, device_name: 'web',
                     full_name: fullName.text, username: userName.text, country: _selectedCountry,);
                   String newModel = registerModelToJson(model);
-                  print(newModel);
 
                   !buttonIsActive ? null :
 
                   AuthHelper.register(newModel).then((response){
                     if(response==true){
-                      print(response);
+                      //if true, load screen till new page
                       authNotifier.loader = false;
                       Get.to(()=> const SetPin());
                     } else{
+                      //else show warning
                       authNotifier.loader = false;
                       Get.snackbar('Failed to register', 'Please check credentials',
                           backgroundColor: Color(kTeal.value),
